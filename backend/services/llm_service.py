@@ -2,7 +2,6 @@ import os
 import json
 from openai import OpenAI
 
-# It will safely ignore missing key if instantiated this way but we mock responses later if no key is set.
 api_key = os.environ.get("OPENAI_API_KEY", "mock-key")
 try:
     client = OpenAI(api_key=api_key)
@@ -21,13 +20,13 @@ def extract_candidate_info(text: str) -> dict:
             "education": [{"degree": "B.S. Computer Science", "institution": "State University"}]
         }
         
-    prompt = f"
+    prompt = f'''
     You are an expert HR assistant. Extract the following information from the provided resume text.
     Return ONLY valid JSON with the keys: 'skills' (array of strings), 'experience' (array of objects with title, company, duration), and 'education' (array of objects).
     
     Resume Text:
     {text}
-    "
+    '''
     try:
         response = client.chat.completions.create(
             model="gpt-3.5-turbo-0125",
@@ -43,7 +42,7 @@ def score_candidate(resume_info: dict, job_description: str) -> dict:
     if is_mocked():
         return {"score": 8.5, "justification": "Mock justification: The candidate has strong Python skills matching the backend requirements, though they lack specific frontend experience."}
         
-    prompt = f"
+    prompt = f'''
     Compare the following resume with this job description and rate fit on 1-10 with justification.
     Return ONLY valid JSON with the keys: 'score' (number between 1 and 10), and 'justification' (string, 2-3 sentences).
     
@@ -52,7 +51,7 @@ def score_candidate(resume_info: dict, job_description: str) -> dict:
     
     Resume Info:
     {json.dumps(resume_info)}
-    "
+    '''
     try:
         response = client.chat.completions.create(
             model="gpt-3.5-turbo-0125",
