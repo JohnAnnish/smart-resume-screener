@@ -7,7 +7,7 @@ import uvicorn
 
 schema.Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Smart Resume Screener API", version="1.0.0")
+app = FastAPI(title="Smart Resume Screener API", version="1.0.0", description="API for parsing and scoring resumes against JDs")
 
 app.add_middleware(
     CORSMiddleware,
