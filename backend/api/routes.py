@@ -82,3 +82,7 @@ def get_matches(job_id: int, db: Session = Depends(get_db)):
             "skills": candidate.skills
         })
     return result
+
+@router.get('/health')
+def health_check():
+    return {'status': 'healthy'}
