@@ -105,7 +105,7 @@ async function loadMatches(jobId) {
 
         matches.forEach(match => {
             const card = document.createElement("div");
-            card.className = "border rounded p-4 shadow-sm mb-4 bg-gray-50";
+            card.className = "border border-gray-200 rounded-lg p-5 shadow-sm mb-4 bg-white hover:shadow-md transition-shadow";
             
             const scoreColor = match.score >= 7 ? "text-green-600" : (match.score >= 4 ? "text-yellow-600" : "text-red-600");
             
