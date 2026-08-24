@@ -2,6 +2,7 @@ import pdfplumber
 import io
 
 def extract_text_from_pdf(file_bytes: bytes) -> str:
+    """Extracts raw text from a PDF file byte stream."""
     text = ""
     try:
         with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
