@@ -22,6 +22,7 @@ async function loadJobs() {
         });
     } catch (e) {
         console.error("Error loading jobs:", e);
+        alert("Failed to load jobs. Is the backend running?");
     }
 }
 
