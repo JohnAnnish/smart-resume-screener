@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from typing import List, Optional, Any
+from pydantic import Field
 
 class JobCreate(BaseModel):
-    title: str
+    title: str = Field(..., description="The title of the job position")
     description: str
 
 class MatchResponse(BaseModel):
