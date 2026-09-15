@@ -61,7 +61,7 @@ async def upload_resume(
     db.commit()
     
     return {
-        "message": "Resume processed successfully",
+        "message": 'Resume processed successfully',
         "candidate_id": db_candidate.id,
         "score": db_match.score
     }
